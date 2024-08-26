@@ -12,7 +12,7 @@ Repo for exercises and projects for the course [Deep Dive Into Modern Web Develo
 - Typescript
 
 ## Parts
-- [ ] 0:  Fundamentals of Web Apps
+- [x] 0:  Fundamentals of Web Apps
 - [ ] 1:  Introduction to React  
 - [ ] 2:  Communicating with server
 - [ ] 3:  Programming a server with NodeJS and Express
