@@ -1,0 +1,10 @@
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    Note right of browser: Form Data ({"content":"data sent with HTTP POST",
+    Note right of browser: "date":"2024-08-26T05:49:30.637Z"})
+    server-->>browser: Status Code 201 (Created)
+    deactivate serverdata sent with HTTP POST
