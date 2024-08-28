@@ -27,6 +27,9 @@ const Statistics = ({ good, neutral, bad }) => {
   const positive =
     Math.round(((good * 100) / (good + bad + neutral)) * 1000) / 1000;
 
+  if (isNaN(average))
+      return <p>No feedback given</p>
+
   return (
     <>
       <h1>Statistics</h1>
