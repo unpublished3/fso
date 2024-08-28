@@ -13,9 +13,9 @@ const App = () => {
   return (
     <div>
       <h1>Give Feedback</h1>
-      <Button onClick={increaseGood} text="Good"/>
-      <Button onClick={increaseNeutral} text="Neutral"/>
-      <Button onClick={increaseBad} text="Bad"/>
+      <Button onClick={increaseGood} text="Good" />
+      <Button onClick={increaseNeutral} text="Neutral" />
+      <Button onClick={increaseBad} text="Bad" />
 
       <Statistics good={good} bad={bad} neutral={neutral} />
     </div>
@@ -28,24 +28,31 @@ const Statistics = ({ good, neutral, bad }) => {
   const positive =
     Math.round(((good * 100) / (good + bad + neutral)) * 1000) / 1000;
 
-  if (isNaN(average))
-      return <p>No feedback given</p>
+  if (isNaN(average)) return <p>No feedback given</p>;
 
   return (
     <>
       <h1>Statistics</h1>
-      <StatisticLine text="Good" value ={good} />
-      <StatisticLine text="Neutral" value ={neutral} />
-      <StatisticLine text="Bad" value ={bad} />
-      <StatisticLine text="Average" value ={average} />
-      <StatisticLine text="Positive" value ={positive} />
-
+      <table>
+        <tbody>
+          <StatisticLine text="Good" value={good} />
+          <StatisticLine text="Neutral" value={neutral} />
+          <StatisticLine text="Bad" value={bad} />
+          <StatisticLine text="Average" value={average} />
+          <StatisticLine text="Positive" value={positive + " %"} />
+        </tbody>
+      </table>
     </>
   );
 };
 
-const Button = ({text, onClick}) => <button onClick={onClick}>{text}</button>
+const Button = ({ text, onClick }) => <button onClick={onClick}>{text}</button>;
 
-const StatisticLine = ({text, value}) => <p>{text} {value}</p>
+const StatisticLine = ({ text, value }) => (
+  <tr>
+    <td>{text}</td>
+    <td>{value}</td>
+  </tr>
+);
 
 export default App;
