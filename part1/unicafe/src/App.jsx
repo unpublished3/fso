@@ -10,31 +10,33 @@ const App = () => {
   const increaseNeutral = () => setNeutral(neutral + 1);
   const increaseBad = () => setBad(bad + 1);
 
-  const average =
-    Math.round(((good - bad) / (good + neutral + bad)) * 1000) / 1000;
-  const positive =
-    Math.round(((good * 100) / (good + bad + neutral)) * 1000) / 1000;
-
   return (
     <div>
       <h1>Give Feedback</h1>
       <button onClick={increaseGood}>Good</button>
       <button onClick={increaseNeutral}>Neutral</button>
       <button onClick={increaseBad}>Bad</button>
-      <Statistics good={good} bad={bad} neutral={neutral} average={average} positive={positive}/>
+      <Statistics good={good} bad={bad} neutral={neutral} />
     </div>
   );
 };
 
-const Statistics = ({ good, neutral, bad, average, positive }) => (
-  <>
-    <h1>Statistics</h1>
-    <p>Good {good}</p>
-    <p>Neutral {neutral}</p>
-    <p>Bad {bad}</p>
-    <p>Average {average}</p>
-    <p>Positive {positive}%</p>
-  </>
-);
+const Statistics = ({ good, neutral, bad }) => {
+  const average =
+    Math.round(((good - bad) / (good + neutral + bad)) * 1000) / 1000;
+  const positive =
+    Math.round(((good * 100) / (good + bad + neutral)) * 1000) / 1000;
+
+  return (
+    <>
+      <h1>Statistics</h1>
+      <p>Good {good}</p>
+      <p>Neutral {neutral}</p>
+      <p>Bad {bad}</p>
+      <p>Average {average}</p>
+      <p>Positive {positive}%</p>
+    </>
+  );
+};
 
 export default App;
