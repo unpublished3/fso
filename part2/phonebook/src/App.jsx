@@ -5,12 +5,14 @@ import Filter from "./components/Filter";
 import Add from "./components/Add";
 
 import personService from "./services/persons";
+import "./index.css"
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
+  const [notification, setNotification] = useState("")
 
   useEffect(() => {
     personService.getAll().then((persons) => setPersons(persons));
@@ -56,6 +58,7 @@ const App = () => {
             );
             setNewName("");
             setNewNumber("");
+            sendNotification(`Number updated for ${newName}`)
           });
       return;
     }
@@ -66,6 +69,7 @@ const App = () => {
         setPersons(persons.concat(person));
         setNewName("");
         setNewNumber("");
+        sendNotification(`Added ${newName}`)
       });
   };
 
@@ -76,9 +80,15 @@ const App = () => {
       });
   };
 
+  const sendNotification = (text) => {
+    setNotification(text);
+    setTimeout(() => {setNotification("")}, 3000)
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
+      {notification? <p className="notification">{notification}</p>: <></>}
       <Filter onFilterChange={onFilterChange} />
 
       <Add
