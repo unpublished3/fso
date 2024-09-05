@@ -1,19 +1,8 @@
-/* .notification {
-    color: rgb(13, 128, 55);
-    width: 98%;
-    height: 40px;
-    border: solid 5px rgb(13, 128, 55);
-    background-color: rgb(236, 233, 233);
-    font-size: 1.5em;
-    padding: 10px;
-    vertical-align: middle;
-} */
-
 .notification {
     color: rgb(13, 128, 55);
     background: lightgrey;
     font-size: 20px;
-    border: 3px solid rgb(13, 128, 55);
+    border: 3px solid;
     border-radius: 5px;
     padding: 10px;
     margin-bottom: 10px;
