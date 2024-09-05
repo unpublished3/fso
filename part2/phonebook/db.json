@@ -6,11 +6,6 @@
       "id": "1"
     },
     {
-      "name": "Ada Lovelace",
-      "number": "39-44-5323523",
-      "id": "2"
-    },
-    {
       "name": "Dan Abramov",
       "number": "12-43-234345",
       "id": "3"
@@ -24,16 +19,6 @@
       "id": "0acf",
       "name": "John Snow",
       "number": "817-432-347"
-    },
-    {
-      "id": "9cf4",
-      "name": "Pat Lat",
-      "number": "9474321"
-    },
-    {
-      "id": "db0f",
-      "name": "Box",
-      "number": "343889"
     }
   ]
 }
