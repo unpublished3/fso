@@ -1,3 +1,5 @@
+import Weather from "./Weather";
+
 const Countries = ({ countries, show }) => {
   if (countries.length == 0) return <></>;
   if (countries.length > 10)
@@ -36,6 +38,11 @@ const Countries = ({ countries, show }) => {
           ))}
         </ul>
         <img src={country.flags.png} alt={`Flag of ${country.name.common}`} />
+        <Weather
+          capital={country.capital[0]}
+          lat={country.capitalInfo.latlng[0]}
+          lng={country.capitalInfo.latlng[1]}
+        />
       </>
     );
   }

@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import Countries from "./components/Countries";
-import countriesService from "./services/countriesService";
+import service from "./services/service";
 
 const App = () => {
   const [countryName, setCountryName] = useState("");
   const [countries, setCountries] = useState([]);
   const [allCountries, setAllCountries] = useState([]);
+  const baseUrl = "https://studies.cs.helsinki.fi/restcountries/api/all";
+
 
   useEffect(() => {
-    countriesService.getAll().then((data) => {
+    service.getAll(baseUrl).then((data) => {
       setAllCountries(data);
     });
   }, []);
