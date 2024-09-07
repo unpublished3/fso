@@ -10,7 +10,6 @@ const App = () => {
   useEffect(() => {
     countriesService.getAll().then((data) => {
       setAllCountries(data);
-      setCountries(data);
     });
   }, []);
 
@@ -27,6 +26,11 @@ const App = () => {
     );
   };
 
+  const show = (country) => {
+    setCountries([country])
+    setCountryName(country.name.common)
+  }
+
   return (
     <div>
       <span>
@@ -34,7 +38,7 @@ const App = () => {
         <input type="text" value={countryName} onChange={changeCountryName} />
       </span>
 
-      <Countries countries={countries} />
+      <Countries countries={countries} show={show}/>
     </div>
   );
 };
