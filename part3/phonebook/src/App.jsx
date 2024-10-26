@@ -12,7 +12,7 @@ const App = () => {
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [filter, setFilter] = useState("");
-  const [notification, setNotification] = useState({text: "", type: ""});
+  const [notification, setNotification] = useState({ text: "", type: "" });
 
   useEffect(() => {
     personService.getAll().then((persons) => setPersons(persons));
@@ -60,8 +60,12 @@ const App = () => {
           })
           .catch((err) => {
             // console.log(err)
-            setPersons(persons.filter((person) => person.name != newName));
-            sendNotification(`${newName} has already been deleted`, "red")
+            if (err.response.statusText === "Bad Request")
+              sendNotification(err.response.data.err, "red");
+            else {
+              setPersons(persons.filter((person) => person.name != newName));
+              sendNotification(`${newName} has already been deleted`, "red");
+            }
           });
       return;
     }
@@ -73,11 +77,10 @@ const App = () => {
         setNewName("");
         setNewNumber("");
         sendNotification(`Added ${newName}`, "green");
-      }).catch(err => {
+      })
+      .catch((err) => {
         if (err.response.statusText === "Bad Request")
-          sendNotification(err.response.data.err, "red")
-        console.log(err.response);
-        
+          sendNotification(err.response.data.err, "red");
       });
   };
 
@@ -91,7 +94,7 @@ const App = () => {
   const sendNotification = (text, type) => {
     setNewName("");
     setNewNumber("");
-    setNotification({text, type});
+    setNotification({ text, type });
     setTimeout(() => {
       setNotification("");
     }, 3000);
@@ -100,7 +103,13 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      {notification.text ? <p className="notification" style={{color: notification.type}}>{notification.text}</p> : <></>}
+      {notification.text ? (
+        <p className="notification" style={{ color: notification.type }}>
+          {notification.text}
+        </p>
+      ) : (
+        <></>
+      )}
       <Filter onFilterChange={onFilterChange} />
 
       <Add
