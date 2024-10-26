@@ -58,7 +58,8 @@ const App = () => {
             );
             sendNotification(`Number updated for ${newName}`, "green");
           })
-          .catch((_) => {
+          .catch((err) => {
+            // console.log(err)
             setPersons(persons.filter((person) => person.name != newName));
             sendNotification(`${newName} has already been deleted`, "red")
           });
@@ -72,6 +73,11 @@ const App = () => {
         setNewName("");
         setNewNumber("");
         sendNotification(`Added ${newName}`, "green");
+      }).catch(err => {
+        if (err.response.statusText === "Bad Request")
+          sendNotification(err.response.data.err, "red")
+        console.log(err.response);
+        
       });
   };
 
